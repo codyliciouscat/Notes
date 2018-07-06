@@ -1,0 +1,258 @@
+==========================================================================================================
+------------------------------------------------- PYTHON -------------------------------------------------
+==========================================================================================================
+
+BASICS:
+===========
+Example File: test.py
+
+- python <file_name> # interprets and runs a python file
+- python # runs code as entered; similar to bash commands
+
+ FLAGS: -d (debugged output)
+	-O (optimized bytecode)
+	-S (does not run import site look for Python paths on startup)
+	-v (verbose output)
+	-X (disable class-based built-in exceptions)
+	-c cmd (run Python script sent in as cmd string
+
+- I'm pretty sure "import sys" is needed for files for variables and constants and such
+
+Some Common Python Identifiers: Class names start with a capital letter, starting identifier with an underscore indicates that it is private
+
+***can make python files executables with the use of chmod +x <file_name>
+
+***You can have code continue on multiple lines by using the "\" character (Except for statements contained in brackets: [], {}, ())
+	Ex.  total = item_one + \
+	             item_two + \
+                     item_three
+	Ex.  days = ['Monday', 'Tuesday', 'Wednesday',
+                     'Thursday', 'Friday']
+*** 'word', "double quotes are used for sentences (multiple words)", """Triple quotes are used for paragraphs. (multiple lines)"""
+
+***semicolons can be used to implement multiple functions in a single line of code; acts like a newline, similar to C++
+
+DATA TYPES:
+===============================================================================
+- list: a sequence of elements. Lists can have different variable types and they do not have to match
+- dictionary: basically a map except values are not of a fixed type
+- a_tuple = (10, 20, 30)
+  a_tuple += (40, 50) # (10, 20, 30, 40, 50)
+- complex # an integer or float added with an imaginery number
+          # add j or J after a number to make it complex or imaginery
+- bytes # stores a sequence of bytes (each 8-bits)
+
+ STRING:
+ ---------
+ - str[0:5] # returns first 5 characters in the string
+ - str[5:] # returns fifth character to end of the string
+ - str[-2:] # returns last two characters
+ - str[-3:-1] # returns two character before last character
+ - str[2] # returns second character
+ - str1 + str2 # returns str2 concatenated on the end of str1
+ - str3*3 # returns str3 repeated 3 times "str3str3str3"
+ - 'n' in str # returns a boolean indicating whether or not n is in str
+ - 'n' not in str # returns a boolean indicating whether or not n is not in str
+ - for i in str # runs through characters in str
+ - capitalize() # returns string with first letter capitalized
+ - lower() # converts all characters of the string to lowercase
+ - upper() # converts all characters of the string to uppercase
+ - swapcase() # pretty self explanatory
+ - title() # title cases strings; capitalize important words
+ - var.count(str) # returns number of times str appears in string var
+ - var.count(str, 0, 5) # returns number of times times str appears in the first five characters of var
+ - len(str) # returns length of str
+ 
+ LISTS:
+ --------
+ Def: mutable collection of elements. Elements can be of different types
+
+ Ex. a = [1, 2, 3, 4, 5]; print(a[::2]) # [1, 3, 4, 5] * increments of two
+
+ Ex. a = [1, 2, 3, 4, 5]; print(a[3:0:-1] # [4, 3, 2] * starts at 3rd element, goes to zero in increments of -1
+
+ TUPLE:
+ --------
+ Def: a immutable collection of elements. Elements can be of different type
+ - pure_tuple = () # creates empty tuple
+ - nested_tuple = (first_tuple, second_tuple) # a tuple of tuples (nested tuple)
+ - sample_tuple = ('Holy Cow',)*3 # creates a tuple that consists of Holy Cow 3 times
+ - slicing a tuple works the same way as slicing a list so go look at that
+
+ SET:
+ ------
+ Def: an immutable collection of elements of the same type. Elements cannot be repeated more than once in a set
+ * sets are close off in curly braces
+ - sample_set = set('Holy Cow') # creates set consisting of character in Holy Cow (including space)
+ - sample_set = {'Hey', 'mom', 'we', 'out', 'of', 'milk'} # creates a set of those words
+ - sample_set.add('Flat') # adds the word flat to set
+ - forzen_set = frozenset(["Jurassic", "Park"]) # creates a frozen set (cannot be modified whatsoever
+
+ DICTIONARY:
+ -------------
+ Def: unordered collection of key-value pairs. Value can be of differnet types
+ * use curly braces
+ - sample_dict = {'key':'value', 'jan':31, 'feb':28} # creates a dictionary with that stuff
+ - sample_dict['uh'] # access value with corresponding key 'uh'
+ - sample_dict.keys() # isolates keys from a dictionary
+ - sample_dict.value() # isolates values from a dictionary
+ - sample_dict.items() # returns items in (key, value) pairs
+ - del sample_dict['key'] # removes pair with key
+
+===============================================================================
+
+LIST COMPREHENSION:
+===============================================================================
+* used to construct lists like a mathematician; basically simplifies list construction
+
+Ex. S = [x**2 for x in range(10)] # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+    V = [2**i for i in range(13)] # [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+    M = [x for x in S if x % 2 == 0] # [0, 4, 16, 36, 64]
+
+Ex. noprimes = [j for i in range(2, 8) for j in range(i*2, 50, i)]
+    primes = [x for x in range(2, 50) if x not in noprimes]
+    print primes # [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+
+Ex. words = 'The quick brown fox jumps over the lazy dog'.split() # ['The', 'quick', 'brown', ... ]
+    stuff = [[w.upper(), w.lower(), len(w)] for w in words]
+    for i in stuff:
+      print i:
+   # ['THE', 'the', 3]
+   # ['QUICK', 'quick', 5]
+   # ...
+===============================================================================
+    
+
+BUILT-IN FUNCTIONS:
+=======================
+- print "<text>" # prints text
+    - print "text", <var_name>, "more text" # prints multiple things
+- len(<var_name>) # gets length of variable "var_name"
+- <var_name> = raw_input("Message") # displays messages, then sets var_name equal to the user's input
+                                    # if raw_input is not set equal to anything, it acts like a pause until user enters newline
+- 'Words words words'.split() # seperates words at whitespace and creates elements
+- id(variable) # returns memory address of variable
+
+OPERATORS:
+===============================================================================
+ARITHMETIC:
+-----------
++, -, *, /, %, +=, -=, *=, /=, %=, **=
+//  - division without fraction part
+*   - exponents (Ex. a**2 = a*a)
+
+COMPARISON:
+-----------
+<, >, <=, >=, ==, !=
+
+LOGICAL:
+--------
+and - (a and b) if 'a' is false, then 'a', else 'b'
+or  - (a or b) if 'a' is false, then 'b', else 'a'
+not - (not a) if 'a' is false, then True, else False
+
+IDENTITY:
+---------
+is  - if both operands refer to the same object, then True, else False
+        Ex. a is b (true if id(a) and id(b) are the same)
+is not  - if both operands refer to different objects, then True, else False
+            Ex. a is not b (true if id(a) and id(b) are different)
+
+Ex. a = 7
+    if(type(a) is int):
+      print("true")
+    else:
+      print("false")
+
+MEMBERSHIP:
+-----------
+in  - if the value exists in the sequence, then True, else False
+        Ex. 7 in [3, 7, 9]
+not in - if the value does not exist in the sequence, then True, else False
+          Ex. 7 not in [3, 5, 9]
+===============================================================================
+
+CONDITIONAL STATEMENTS:
+===========================
+if expression:
+  <code> # or suite, if you want to call it that
+elif expression:
+  <code>
+else:
+  <code>
+
+COMMAND-LINE ARGUMENTS:
+===========================
+- sys.argv # list of command-line arguments
+- len(sys.argv) # number of command-line arguments
+- sys.argv[0] # program name; script name
+- print str(sys.argv) # prints list of command line arguments in format: ['<script_name', 'arg1', 'arg2']; Number of arguments: 3
+
+ARITHMETIC:
+===============
+- pow(a, b, c) # returns (a^b)%c
+- round(float, precision)
+
+RANDOM FUNCTIONS:
+===============================================================================
+* use "import random" to use random functions except shuffle
+
+RANDRANGE:
+------------
+- random.randrange(STOP) # generates a random number r such that 0 <= r < STOP
+    - cannot pass 0 or a negative integer
+- random.randrange(START, STOP) # generates a random number r such that START <= r < STOP
+- random.randrange(START, STOP, STEP) # generates a random number r such that r < STOP and r = START + STEPx
+    Ex. random.randrange(4, 10, 3) can generate the numbers 4, 7 and 10
+
+RANDINT:
+----------
+- random.randint(MIN, MAX) # generates a random number r such that MIN <= r <= MAX
+
+CHOICE:
+---------
+- random.choice( ['a', 'b', 'c', ... ] ) # returns a random element in sequence
+    - works for any type (int, string, etc.)
+- random.choice('Eating ass is encouraged') # returns a random char in the string
+
+RANDOM:
+---------
+- random() # generates a pseudo random floating-point number r such that 0 < r < 1
+
+UNIFORM:
+----------
+- random.uniform(MIN, MAX) # generates a pseudo random floating-point number r such that MIN < r < MAX
+
+SHUFFLE:
+----------
+* use "from random import shuffle"
+- list = [a, b, c, d]
+- shuffle(list) # randomly shuffles elements in list using FisherYates algorithm
+
+SAMPLE:
+---------
+* use "from random import shuffle"
+- sample( (1, 2, 3, 4, 5, 6), n) # returns a random sample of n elements from list
+- sample('Holy Cow this is a string', n) # returns a random sample of n elements from list
+    - works with list, tuple, string, dictionary and set
+* an element from sequence can only appear once in result
+===============================================================================
+
+KEYWORDS:
+=============
+- False       - def         - if           - raise
+- None        - del         - import       - return
+- True        - elif        - in           - try
+- and         - else        - is           - while
+- as          - except      - lambda       - with
+- assert      - finally     - nonlocal     - yield
+- break       - for         - not
+- class       - from        - or
+- continue    - global      - pass
+
+*python has class and inheritance and what-not
+*debugging tools: pdb, pudb, PyDebug
+
+
+Hyperlink: http://www.techbeamers.com/python-tutorial-step-by-step
+Pick Back Up: Python Namespace

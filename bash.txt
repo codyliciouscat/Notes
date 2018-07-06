@@ -1,0 +1,64 @@
+cd /
+cd /mnt/c
+
+ln -s <destination> // creates link to program
+
+chmod +x <file_name> // makes file executable
+chmod -x <file_name> // makes file not executable
+
+~/.bashrc // startup files
+
+ls / // shows all hidden root directories
+ls -d */ // shows all directories in current directory
+$PWD // refers to current working path
+
+xport PATH=/mnt/c/Users/Coco/Documents/Coding/"Bash Files":$PATH // creates path for executables
+sudo jpico /etc/ssh/sshd_config // for accessing ssh config
+sudo service ssh --full-restart // create ssh server
+trap "echo CTRL+C not allowed" 2 // this message pops up when CTRL+C is attempted
+trap - 2 // removes trap added for CTRL+C
+
+for openGL: g++ *.cpp -o test -lGL -lGLU -lglut
+
+STRINGS:
+============
+- expr length $string // strlen()
+- expr match "$string" : '$substring' // finds length of max substring I think
+- expr index $string $substring // numerical position in $string of first character in $substring that matches
+- ${string:position} // outputs position to end of the string
+- ${string:position:position2} // strings from position to position
+     - also: expr substr '$string 1 2'
+- expr match $string '\($substring\)' // $substring is a regular expression
+- ${string#substring} // deletes shortest match of $substring from front of $string
+- $[string##substring} // deletes longest match of $substring from front of $string
+- ${string%substring} // deletes shortest match of $substring from back of $string
+- ${string%%substring} // deletes longest match of $substring from back of $string
+- ${string/substring/replacement} // replace first match of substring with $replacement
+- ${string//substring/replacement} // replaces all matches of $substring with $replacement
+
+ECHO:
+=========
+- printf "\e[1;2;3m<output>\e[0;0;0m" // 1 is style. Ex. italicize; 2 is color; 3 is background color
+- printf "\e[38;2;<red>;<green>;<blue>m<text>" // changes foreground RGB color
+- printf "\e[48;2;<red>;<green>;<blue>m<text>" // changes background RGB color
+- printf "\e[?1049h" // switches to an alternate terminal
+- printf "\e[?1049l" // switches to normal terminal
+- printf "\e[?25l" // hides cursor
+- printf "\e[?25h" // shows cursor
+
+- printf "\e[<row>;<column>H"$tmp // outputs $tmp at position <row>, <column>
+- "\e[<N>A" // move cursor up N lines
+- "\e[<N>B" // moves cursor down N lines
+- "\e[<N>C" // moves cursor forward N columns
+- "\e[<N>D" // moves cursor backward N columns
+- "\e[s" // saves cursor position
+- "\e[u" // restores cursor position
+
+#!/bin/bash
+
+- read -rsn1 input // captures keystrokes
+
+- printf "\e[?1049h" // switches to alternate terminal
+- printf "\e[?1049l" // switches back to original terminal
+- printf "\e[?25l" // hides cursor
+- printf "\e[?25l" // shows cursor
