@@ -250,9 +250,48 @@ KEYWORDS:
 - class       - from        - or
 - continue    - global      - pass
 
+NAMESPACE:
+===============================================================================
+- dir() # lists all the names that are available in a program at that time
+    - Ex. print(dir()) # prints "['__builtins__', '__doc__', '__file__', ..."
+    - Ex. def outer_foo():
+            outer_var = 3
+            def inner_foo():
+              inner_var = 5
+              print(dir(), ' - names in inner_foo')
+            outer_var = 7
+            inner_foo()
+            print(dir(), ' - names in outer_foo')
+
+- from <module name> import * # imports all names from a module
+    - Ex. from math import *
+- from <module name> import <foo_1>, <foo_2> # imports foo_1 and foo_2 from module name
+    Ex. from math import sqrt, pow
+- import <module name> # imports module name
+
+
+
+===============================================================================
+
+STRINGS:
+===============================================================================
+- String_var = 'Python'
+  String_var = "Python"
+  String_var = """Python""" # triple quotes can extend to multiple lines
+  # all of these assignments are identical
+
+- substr_var = String_var.replace("document", "tutorial")
+    # replace "document" with "tutorial" and store in another variable
+
+Accessing Characters:
+---------------------
+ P  Y  T  H  O  N     Ex. sample_str[0]
+ 0  1  2  3  4  5
+-6 -5 -4 -3 -2 -1
+===============================================================================
+
 *python has class and inheritance and what-not
 *debugging tools: pdb, pudb, PyDebug
-
 
 Hyperlink: http://www.techbeamers.com/python-tutorial-step-by-step
 Pick Back Up: Python Namespace
