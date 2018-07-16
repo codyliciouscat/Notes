@@ -43,7 +43,7 @@ DATA TYPES:
 - bytes # stores a sequence of bytes (each 8-bits)
 
  STRING:
- ---------
+ ==========================================================
  - str[0:5] # returns first 5 characters in the string
  - str[5:] # returns fifth character to end of the string
  - str[-2:] # returns last two characters
@@ -53,6 +53,9 @@ DATA TYPES:
  - str3*3 # returns str3 repeated 3 times "str3str3str3"
  - 'n' in str # returns a boolean indicating whether or not n is in str
  - 'n' not in str # returns a boolean indicating whether or not n is not in str
+ - r/R # append to beginning of string to convert to raw string
+       # ignores escape characters
+       - Ex. print(r'\n') # outputs '\n' instead of a newline
  - for i in str # runs through characters in str
  - capitalize() # returns string with first letter capitalized
  - lower() # converts all characters of the string to lowercase
@@ -62,7 +65,112 @@ DATA TYPES:
  - var.count(str) # returns number of times str appears in string var
  - var.count(str, 0, 5) # returns number of times times str appears in the first five characters of var
  - len(str) # returns length of str
+ - del str # deletes string str (del str[1] is invalid)
  
+ Comparison Functions:
+ -----------------------
+ - str.islower()   # returns true if all characters in str are lowercase
+ - str.isupper()   # returns true if all characters in str are uppercase
+ - str.isdecimal() # returns true if all characters in str are decimal
+ - str.isdigit()   # returns true if all characters in str are digits
+ - str.isaplha()   # returns true if all characters in str are alphabetic
+ - str.isalnum()   # returns if all characters in str are alphabetic or digits (alphanumeric)
+
+ String Padding Functions:
+ ---------------------------
+ var='Python'
+ - var.rjust(10, '-')  # Python----
+ - var.ljust(10, '-')  # ----Python
+ - var.center(10, '-') # --Python--
+ - var.zfill(10, '-')  # 0000Python (padded on left with zeroes)
+
+ String Finding Functions:
+ ---------------------------
+ var='Tech Beamers'
+ str='Beam'
+ - find(str [,i [,j]])  # search starts from i and stops at j (optional)
+    - var.find(str)     # returns 5
+    - var.find(str, 4)  # returns 5
+    - var.find(str, 7)  # returns -1
+ - index(str [,i [,j]]) # find() except raises 'ValueError if str is not found
+ - rfind(str [,i [,j]]) # find() except returns last index where str was found
+                        # if str is not found, -1 is returned
+ - count(str [,i [,j]]) # returns number of occurences of substring str in var
+    - var.count(str)    # returns 1
+
+ String Replacing Functions:
+ -----------------------------
+ var='This is a good example'
+ str='was'
+ var2='Print new line\nNextline\n\nMove'
+ - replace(old, new [,count]) # replaces count occurences of 'old' with 'new' in string
+                              # if count is not specified, replace all
+    - var.replace('is', str)  # Thwas was a good example
+
+ Misc String Functions:
+ ------------------------
+ var='This is a good example'
+ str='was'
+ - split([sep [,maxsplit]])   # returns a list of substrings in string
+                              # space is default seperator (sep)
+                              # max is number of splits to be done
+    - var.split() # ['This', 'is', 'a', 'good', 'example']
+ - splitlines(num) # splits string at line breaks; if num > 0, \n is included
+    - var2.splitlines(1) # ['Print new line\n', 'Nextline\n', '\n', 'Move']
+    - var2.splitlines()  # ['Print new line', 'Nextline', '', 'Move']
+ - join(seq) # joins sequence with string
+    - seq=('ab', 'bc', 'cd'); str='='
+      str.join(seq) # ab=bc=cd
+ - lstrip([chars]) # returns string after removing the chars from beginning
+                   # default character is whitespace
+    - var='***This is a good example***'
+      var.lstrip('*') # This is a good example***
+ - rstrip([chars]) # returns string after removing the chars from end
+                   # default character is whitespace
+ - rindex(str[,i [,j]]) # searches for 'str' in string
+                        # returns last index where str is found
+                        # if i and j are not defined, searches entire string
+    - var='turtle turtle'
+      var.rindex('turtle') # 7
+
+ Operator %:
+ -------------
+ - print("Employee Name: %s,\nEmployee Age: %d" % ('Ashish', 25)
+    # Employee Name: Asish,
+    # Employee Age: 25
+
+   Format Symbol:  Conversion:
+   -------------------------------------
+   %c              character
+   %s              string conversion via str() prior to formatting
+   %i              signed decimal integer
+   %d              signed deicmal integer
+   %u              unsigned decimal integer
+   %o              octal integer
+   %x              hexadecimal integer (lowercase letters)
+   %X              hexadecimal integer (uppercase letters)
+   %e              exponential notation (with lowercase 'e')
+   %E              exponential notation (with uppercase 'E')
+   %f              floating point real number
+   %g              the shorter of %f and %e
+   %G              the shorter of %F and %E
+
+- String_var = 'Python'
+  String_var = "Python"
+  String_var = """Python""" # triple quotes can extend to multiple lines
+  # all of these assignments are identical
+
+- substr_var = String_var.replace("document", "tutorial")
+    # replace "document" with "tutorial" and store in another variable
+
+Accessing Characters:
+===================
+ P  Y  T  H  O  N     Ex. sample_str[0] # 1st character (P)
+ 0  1  2  3  4  5         sample_str[-1] # last character (N)
+-6 -5 -4 -3 -2 -1         sample_str[-6] # 6th character from end (P)
+===================
+===========================================================
+
  LISTS:
  --------
  Def: mutable collection of elements. Elements can be of different types
@@ -250,6 +358,45 @@ KEYWORDS:
 - class       - from        - or
 - continue    - global      - pass
 
+CLASS:
+===============================================================================
+- class Bookstore: # creates BookStore object with pass attribute
+    pass
+- __init__() # constructor
+- self # similar to 'this' in C++
+       # self is the first parameter in every function of a class
+
+Ex.
+  class BookStore
+    num_books = 0
+    def __init__(self, title, author):
+      self.title = title
+      self.author = author
+      BookStore.num_books += 1
+
+    def bookInfo(self):
+      print("Book Title: ", self.title)
+      print("Book Author: ", self.author, "\n")
+
+===============================================================================
+
+INHERITANCE:
+===============================================================================
+Ex. class Taxi: # base class
+      def __init__(self, model, capacity, variant):
+        ...
+
+      def getModel(self)
+        ...
+
+    class Vehicle(Taxi) # sub-class
+      def __init__(self, model, capacity, variant, color):
+        super().__init__(model, capacity, variant)
+        self.__color = color
+
+- super() # allows a function of the base class to be called in sub-class
+===============================================================================
+
 NAMESPACE:
 ===============================================================================
 - dir() # lists all the names that are available in a program at that time
@@ -285,13 +432,82 @@ STRINGS:
 
 Accessing Characters:
 ---------------------
- P  Y  T  H  O  N     Ex. sample_str[0]
- 0  1  2  3  4  5
--6 -5 -4 -3 -2 -1
+ P  Y  T  H  O  N     Ex. sample_str[0] # 1st character (P)
+ 0  1  2  3  4  5         sample_str[-1] # last character (N)
+-6 -5 -4 -3 -2 -1         sample_str[-6] # 6th character from end (P)
+===============================================================================
+
+FILE I/O:
+===============================================================================
+- file_object = open(file_name [, access_mode][, buffering]) # opens file
+    - access_mode # parameter representing the file open mode
+                  # set to <r> (read only) by default
+    - buffering   # default is 0 (no buffering)
+                  # if 1, line buffering will take place while accessing file
+                  # if >1, buffering action will runs as per the buffer size
+- file_object.close() # closes file
+- file_object.write('...') # writes to a file
+- file_object.writelines(sequence) # writes a sequence of strings to file
+- file_object.readlines(<n>) # returns n lines of file; all if n is not specified
+- file_object.read(<n>) # returns first n characters of file
+                        # if file has already been read from, reads next n characters
+                        # if n is not specified, reads til end of file
+- file_object.next() # returns next line from the last offset
+- file_object.tell() # returns position of pointer in file (reading position)
+- file_object.seek(offset [, from]) # repositions pointer in file
+                                    # offset refers to displacement
+                                    # from indicates start point
+    Ex. f.seek(0, 0) # positions pointer at beginning of file
+- file_object.flush() # flushes internal buffer
+- os.rename('old_file', 'new_file') # renames old_file to new_file
+    Ex. import os
+        os.rename("app.log", "app1.log")
+- os.remove('file_name') # deletes file_name
+
+- # this method ensures file is closed properly even if exception occurs
+  try:
+    f = open('file_name')
+    # file operations
+  finally:
+    f.close()
+
+  # similar method; after the block within with is executed, file is closed
+  with open('file_name') as f:
+    # file operations ...
+
+File Open Modes:
+------------------
+<r>   # opens file in read-only mode
+<rb>  # opens file in binary and read-only mode
+<r+>  # opens file in read and write mode
+<rb+> # opens file in read, write, and binary mode
+<w>   # opens file in write mode; if file exist, it will be overwritten
+<wb>  # opens file in write mode and writes in binary format
+<wb+> # opens file in read, write and binary modes
+<a>   # opens file in append mode (same as write but adds to end of file)
+<ab>  # opens file in append mode and writes in binary format
+<a+>  # opens file in read and append modes
+<ab+> # opens file in read, append, and binary modes
+--------------------
+File Object Attributes:
+-------------------------
+<file.closed> # returns true for a close file; false otherwise
+<file.mode> # returns access mode used to open a file
+<file.name> # returns name of a file
+<file.softspace> # returns boolean to suggest if a space char will get added
+                   before printing another value in the ouput of print command
+--------------------------
+
+Ex. 
+  with open('file_name') as f:
+    content = f.readlines()
+    for line in content:
+      print(line)
+
 ===============================================================================
 
 *python has class and inheritance and what-not
 *debugging tools: pdb, pudb, PyDebug
 
 Hyperlink: http://www.techbeamers.com/python-tutorial-step-by-step
-Pick Back Up: Python Namespace
+Pick Back Up: Python Copy File
